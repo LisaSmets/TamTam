@@ -1,0 +1,132 @@
+/*  Mobile = van 0 px tot 320 px  */
+
+html
+{
+	font-size: 62.5%;
+	background-image: url(../images/blur.jpg);
+}
+
+#container
+{
+	background-color: #0C8C71;
+	margin-top: 10rem;
+	padding-top: 3rem;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 350px; /*normaal 320px*/
+	min-height: 480px; /*normaal 480px*/
+}
+
+
+body
+{
+	font-family: 'Arial Narrow', sans-serif;
+	font-size: 15px;
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+
+#logo
+{
+	display: block;
+	margin-bottom: 5%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 1rem;
+}
+
+.tekstvak,
+#password
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+	margin-top: 5%;
+	padding-top: 0.4rem;
+	padding-bottom: 0.4rem;
+	padding: 0.5rem;
+	color:white;
+	background-color: #0C8C71;
+	border: 2px solid white;
+}
+
+	.tekstvak::-webkit-input-placeholder, 
+	#password::-webkit-input-placeholder
+	{
+	   color: white;
+	}
+
+	.tekstvak:-moz-placeholder, 
+	#password:-moz-placeholder
+	{ 
+	   color: white;  
+	}
+
+	.tekstvak:-ms-input-placeholder, 
+	#password:-ms-input-placeholder
+	{  
+	   color: white;  
+	}
+
+
+
+.tekstvak:focus,
+#password:focus
+{
+	outline-color: transparent;
+  	outline-style: none;
+}
+
+
+#btnlogin
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	margin-top: 10%;
+	border:none;
+	background-color: white;
+	color: #0C8C71;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	font-size: 1.7rem;
+	font-weight: bold;
+}
+
+#sorry
+{
+	color: white;
+	padding-top: 1rem;
+}
+
+#linkRegistreer:link,
+#linkRegistreer:visited,
+#linkRegistreer:hover,
+#linkRegistreer:active
+{
+	display: block;
+	color: white;
+	text-decoration: none;
+	padding-top: 3rem;
+	padding-bottom: 1.5rem;
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

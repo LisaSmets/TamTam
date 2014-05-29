@@ -1,0 +1,215 @@
+html
+{
+	font-size: 62.5%;
+	background-image: url(../images/blur.jpg);
+}
+
+#container
+{
+	background-color: white;
+	margin-top: 10rem;
+	padding-top: 3rem;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 350px; /*normaal 320px*/
+	min-height: 480px; /*normaal 480px*/
+}
+
+body
+{
+	font-family: 'Arial Narrow', sans-serif;
+	font-size: 15px;
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+#logout:link,
+#logout:visited,
+#logout:hover,
+#logout:active
+{
+	float: right;
+	color: #0C8C71;
+	text-decoration: none;
+	padding-right: 1.5rem;
+	font-size: 15px;
+}
+
+#terug:link,
+#terug:visited,
+#terug:hover,
+#terug:active
+{
+	float: left;
+	color: #0C8C71;
+	text-decoration: none;
+	padding-top: 4%;
+	padding-left: 1.5rem;
+}
+
+.title
+{
+	float: center;
+	display: block;
+	margin-left: 10%;
+	margin-right: 10%;
+	padding-top: 4%;
+	font-size: 2.5rem;
+	font-weight: bold;
+}
+
+/*toevoegen aan lijst*/
+/*in patienttoevoegen.php*/
+.button
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	margin-top: 25%;
+	margin-bottom: 2%;
+	border:none;
+	background-color: #0C8C71;
+	color: white;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	font-size: 1.7rem;
+	font-weight: bold;
+}
+
+/*mijnpatienten.php*/
+.btn_voegtoe:link,
+.btn_voegtoe:visited,
+.btn_voegtoe:hover,
+.btn_voegtoe:active
+{
+	display: block;
+	font-family: arial;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border:none;
+	background-color: #0C8C71;
+	color: white;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	font-size: 1.7rem;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#linetop
+{
+	margin-top: 2rem;
+	border-color: #0C8C71;
+}
+
+#linebottom
+{
+	margin-top: 5%; /*nog aanpassen!*/
+	border-color: #0C8C71;
+}
+
+.tekstvak
+{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+	margin-top: 5%;
+	padding-top: 0.4rem;
+	padding-bottom: 0.4rem;
+	padding: 0.5rem;
+	color:black;
+	background-color: white;
+	border: 2px solid #0C8C71;
+}
+
+	.tekstvak::-webkit-input-placeholder
+	{
+	   color: #0C8C71;
+	}
+
+	.tekstvak:-moz-placeholder
+	{ 
+	   color: #0C8C71;  
+	}
+
+	.tekstvak:-ms-input-placeholder
+	{  
+	   color: #0C8C71;  
+	}
+
+
+#divlijstpatienten
+{
+	min-height: 320px;
+}
+
+.tekstvak:focus
+{
+	outline-color: transparent;
+  	outline-style: none;
+}
+
+#first
+{
+	margin-top: 6rem;
+}
+
+#lijst
+{
+	text-align: left;
+	/*padding-left: 4rem;*/
+	padding-top: 0rem;
+}
+
+.lipatient
+{
+	font-size: 2rem;
+	padding-top: 1rem;
+	padding-left: 4rem;
+}
+
+.lipatient a
+{
+	text-decoration: none;
+	color: black;
+
+}
+
+.letteraz
+{
+	color:white;
+	font-size: 2rem;
+	font-weight: bold;
+	background-color: #0C8C71;
+	margin-top: 2rem;
+	padding-left: 4rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
