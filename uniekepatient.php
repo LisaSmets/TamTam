@@ -13,28 +13,35 @@ session_start();
 		$patient=new patient();
 		$patient->emailgebruiker = $_SESSION['email'];
 		$patient->id = $pid;
-		echo ($patient->id);
+		//echo ($patient->id);
 
-		// $patient->voornaam = $_SESSION['patientvoornaam'];
-		// $patient->achternaam = $_SESSION['patientachternaam'];
-		// $patient->straat = $_SESSION['patientstraat'];
-		// $patient->nr = $_SESSION['patientnr'];
-		// $patient->woonplaats =$_SESSION['patientwoonplaats'];
 		$res = $patient->getone();
 
-		//print_r($res);
+		while($patientinfo = $res->fetch_assoc())
+		{
+			$voornaam = $patientinfo['voornaam'];
+			$achternaam = $patientinfo['achternaam'];
+			$straat = $patientinfo['straat'];
+			$nr = $patientinfo['nr'];
+			$woonplaats = $patientinfo['woonplaats'];		
+		}
+
+		// echo $voornaam;
+		// echo $achternaam;
+		// echo $straat;
+		// echo $nr;
+		// echo $woonplaats;
 
 		if(!empty($_POST['btn_edit']))
 		{
-			$patient->id = $_SESSION['patientid'];
+			$patient->id = $pid;
 			// echo ($patient->id);
 			$patient->voornaam = $_POST['patientvn'];
 			$patient->achternaam = $_POST['patientan'];
 			$patient->straat = $_POST['patientstraat'];
 			$patient->nr = $_POST['patientnr'];
 			$patient->woonplaats = $_POST['patientwoonplaats'];
-			$patient->Update();
-
+			$infoupdate = $patient->Update();
 		}
 
 	}
@@ -42,24 +49,6 @@ session_start();
 	{
 		header("location: login.php");
 	}
-
-
-	// if(!empty($_POST['edit']))
-	// {
-	// 	try
-	// 	{	
-	// 		$nieuwMenu->id = $_POST['gerechtid'];
-	// 		$nieuwMenu->naam = $_POST['gerechtnaam'];
-	// 		$nieuwMenu->details = $_POST['gerechtdetails'];
-	// 		$nieuwMenu->prijs = $_POST['gerechtprijs'];
-	// 		$nieuwMenu->Update();
-
-	// 	}
-
-	// 	catch (Exception $e) 
-	// 	{
-	// 		$feedback = $e->getMessage();
-	// 	}
 			
 
 
@@ -106,6 +95,12 @@ session_start();
         	$("#infopatient").show('slow');
         });
 
+         $("#btn_edit").click(function(){
+        	$("#bewerkpatient").hide('slow');
+        	$("#infopatient").show('slow');
+        });
+
+
 
         $("#nieuwbericht").hide();
         $("#berichtlabel").hide();
@@ -134,19 +129,35 @@ session_start();
         	$("#joubericht").show('slow');
         });
 
+        //AJAX-CALL
+        $("#btn_edit").click(function(){
+        	var updateid = $("updateO").val();
+        	var updatevn = $("#update1").val();
+        	var updatean = $("#update2").val();
+        	var updatestraat = $("#update3").val();
+        	var updatenr = $("#update4").val();
+        	var updatewp = $("#update5").val();
+
+        	console.log(updatevn + updatean + updatestraat + updatenr + updatewp);
+        	
+        	$("#infonaam").text(updatevn+" "+updatean);
+        	$("#infostraatnr").text(updatestraat+" "+updatenr);
+        	$("#infowoonplaats").text(updatewp);
+        });
+
 
     });
 	</script>
 
  	<div id="container">
  		<a href="mijnpatienten.php" id="pijlterug">terug</a>
-		<h1 class='title'><?php echo $_SESSION['patientvoornaam']." ".$_SESSION['patientachternaam'] ?></h1>
+		<h1 class='title'><?php echo $voornaam ." ".$achternaam ?></h1>
 		<a href="logout.php" id="logout">Log out</a>
 
 		<div id='jqxnavigationbar'>
 		    <!--Header-->
 		    <div>
-		        Patiën
+		        Patiënt
 		    </div>
 		    <!--Content-->
 		    <div>
@@ -154,28 +165,25 @@ session_start();
 	
 		    		<img  src="images/dummy.png" id='dummy' alt="dummypic">
 		    		
-			        <p class="info"><?php echo $patient->voornaam." ".$patient->achternaam ; ?></p>
-			        <p class="info"><?php echo $patient->straat." ".$patient->nr ; ?></p>
-			        <p class="info"><?php echo $patient->woonplaats ; ?></p>
+			        <p class="info" id='infonaam'><?php echo $voornaam." ".$achternaam ; ?></p>
+			        <p class="info" id='infostraatnr'><?php echo $straat." ".$nr ; ?></p>
+			        <p class="info" id='infowoonplaats'><?php echo $woonplaats ; ?></p>
 			        <a id='edit' href="#">edit</a>
 		    	</div>
 
 		    	<div id="bewerkpatient">
 		    		
-		    			<?php 
-		    			while($lijstp = $res->fetch_assoc())
-		    			{	
+		    			<?php 	
 		    				echo "<form action='' method='post'>";
-		    				echo "<input type='hidden' name='inputid' value='".$_SESSION['patientid']."'/>";
 		    				echo "<label for='patientvn'>Naam </label>";
-		    				echo "<input type='text' class='inputvak' name='patientvn' value='".$lijstp['voornaam']."'/>";
-		    				echo "<input type='text' class='inputvak'name='patientan' value='".$lijstp['achternaam']."'/>";
+		    				echo "<input type='hidden' id='update0' class='inputvak' name='patientvn' value='".$pid."'/>";
+		    				echo "<input type='text' id='update1' class='inputvak' name='patientvn' value='".$voornaam."'/>";
+		    				echo "<input type='text' id='update2' class='inputvak'name='patientan' value='".$achternaam."'/>";
 		    				echo "<label for='patientstraat'>Adres </label>";
-		    				echo "<input type='text' class='inputvak' name='patientstraat' value='".$lijstp['straat']."'/>";
-		    				echo "<input type='text' class='inputvak' name='patientnr' value='".$lijstp['nr']."'/>";
-		    				echo "<input type='text' class='inputvak' name='patientwoonplaats' value='".$lijstp['woonplaats']."'/>";
+		    				echo "<input type='text' id='update3' class='inputvak' name='patientstraat' value='".$straat."'/>";
+		    				echo "<input type='text' id='update4' class='inputvak' name='patientnr' value='".$nr."'/>";
+		    				echo "<input type='text' id='update5' class='inputvak' name='patientwoonplaats' value='".$woonplaats."'/>";
 		    				echo "<input type='submit' name='btn_edit' id='slaop' value='Sla wijzigingen op'/>";
-		    			}
 		    			 ?>
 		    			 <a id='btn_terug1' href="#">Terug</a>
 		    			

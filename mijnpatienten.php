@@ -40,7 +40,7 @@
 <body>
 	<div id="container">
 
-		<h1 class='title'>Mijn patiënte</h1>
+		<h1 class='title'>Mijn patiënten</h1>
 
 		<a href="logout.php" id="logout">Log out</a>
 

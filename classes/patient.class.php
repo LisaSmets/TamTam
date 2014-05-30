@@ -58,7 +58,7 @@
 			switch ($p_sProperty) 
 			{
 				case 'id': 
-					$vResult = $this->m_iid;
+					return $this->m_iid;
 					break;
 
 				case 'voornaam':
@@ -118,9 +118,9 @@
 		public function getone()
 		{
 			$db = new db();
-			$sql = "SELECT * FROM patienten WHERE (id ='".$this->id."')";
+			$sql = "SELECT * FROM patienten WHERE id ='".$this->id."'";
 			// echo('id='.$_SESSION['patientid']);
-			echo($sql);
+			//echo($sql);
 	    	return $db->conn->query($sql);
 		}
 
@@ -137,7 +137,7 @@
 						woonplaats = '".$db->conn->real_escape_string($this->woonplaats)."'
 						WHERE id = '".$this->id."'";	
 			//print_r($sql);
-			$db->conn->query($sql);
+			return $db->conn->query($sql);
 		}
 		
 		public function Geta()
