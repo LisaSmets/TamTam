@@ -40,7 +40,7 @@
 <body>
 	<div id="container">
 
-		<h1 class='title'>Mijn patiënten</h1>
+		<h1 class='title'>Mijn patiënte</h1>
 
 		<a href="logout.php" id="logout">Log out</a>
 
@@ -57,18 +57,9 @@
 
 			while($lijstpatienten = $res->fetch_assoc())
 				{
-					$_SESSION['patientid'] = $lijstpatienten['id'];
-					$_SESSION['patientvoornaam'] =$lijstpatienten['voornaam'];
-					$_SESSION['patientachternaam'] =$lijstpatienten['achternaam'];
-					$_SESSION['patientstraat'] =$lijstpatienten['straat'];
-					$_SESSION['patientnr'] =$lijstpatienten['nr'];
-					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
-
 					echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
-					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
-					echo "</li>";
-
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "</li>";					
 				}
 		}
 		
@@ -90,7 +81,7 @@
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -114,7 +105,7 @@
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -137,7 +128,7 @@
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -159,7 +150,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -181,7 +172,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -203,7 +194,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 					echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 				}
@@ -225,7 +216,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -247,7 +238,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -269,7 +260,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -291,7 +282,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];	
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -314,7 +305,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -336,7 +327,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -358,7 +349,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -380,7 +371,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -402,7 +393,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -423,7 +414,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -444,7 +435,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -466,7 +457,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -488,7 +479,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -510,7 +501,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -533,7 +524,7 @@
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 
 					echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -555,7 +546,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -577,7 +568,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -599,7 +590,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}
@@ -621,7 +612,7 @@
 					$_SESSION['patientnr'] =$lijstpatienten['nr'];
 					$_SESSION['patientwoonplaats'] =$lijstpatienten['woonplaats'];
 				echo "<li class='lipatient'>";
-					echo "<a id='btn_naarinfo' href='uniekepatient.php'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
+					echo "<a id='btn_naarinfo' href='uniekepatient.php?id=".$lijstpatienten['id']."'>".$lijstpatienten['achternaam']." ".$lijstpatienten['voornaam']."</a>";
 					echo "<input type='hidden' value='".$lijstpatienten['id']."'/>";
 					echo "</li>";
 			}

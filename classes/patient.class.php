@@ -118,9 +118,9 @@
 		public function getone()
 		{
 			$db = new db();
-			$sql = "SELECT * FROM patienten WHERE id ='".$_SESSION['patientid']."'";
+			$sql = "SELECT * FROM patienten WHERE (id ='".$this->id."')";
 			// echo('id='.$_SESSION['patientid']);
-			//echo($sql);
+			echo($sql);
 	    	return $db->conn->query($sql);
 		}
 

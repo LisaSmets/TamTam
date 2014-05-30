@@ -8,15 +8,18 @@ session_start();
 	{
 		include_once("classes/patient.class.php");
 
+		$pid = $_GET['id'];
+
 		$patient=new patient();
 		$patient->emailgebruiker = $_SESSION['email'];
-		$patient->id = $_SESSION['patientid'];
+		$patient->id = $pid;
+		echo ($patient->id);
 
-		$patient->voornaam = $_SESSION['patientvoornaam'];
-		$patient->achternaam = $_SESSION['patientachternaam'];
-		$patient->straat = $_SESSION['patientstraat'];
-		$patient->nr = $_SESSION['patientnr'];
-		$patient->woonplaats =$_SESSION['patientwoonplaats'];
+		// $patient->voornaam = $_SESSION['patientvoornaam'];
+		// $patient->achternaam = $_SESSION['patientachternaam'];
+		// $patient->straat = $_SESSION['patientstraat'];
+		// $patient->nr = $_SESSION['patientnr'];
+		// $patient->woonplaats =$_SESSION['patientwoonplaats'];
 		$res = $patient->getone();
 
 		//print_r($res);
@@ -143,7 +146,7 @@ session_start();
 		<div id='jqxnavigationbar'>
 		    <!--Header-->
 		    <div>
-		        Patiënt
+		        Patiën
 		    </div>
 		    <!--Content-->
 		    <div>
