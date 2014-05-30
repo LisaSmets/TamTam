@@ -246,6 +246,68 @@ label
 	padding-right: 5rem;
 }
 
+#talkbubbleleft {
+  position:relative;
+  padding:15px;
+  margin-right: 3rem;
+  margin-top: 6rem;
+  color:black;
+  background:white; /* default background for browsers without gradient support */
+  border-style: solid;
+  border-width: 6px;
+  border-color: #FF8D00;
+  /* css3 */
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+  
+}
+
+#talkbubbleleft:before {
+  content:"";
+  position:absolute;
+  top:-30px; /* value = - border-top-width - border-bottom-width */
+  left:20px; /* controls horizontal position */
+  border-width:0px 30px 30px 0; /* vary these values to change the angle of the vertex */
+  border-style:solid;
+  border-color: #FF8D00 transparent;
+  /* reduce the damage in FF3.0 */
+  display:block;
+  width:0;
+}
+
+#talkbubbleright {
+  position:relative;
+  padding:15px;
+  margin-right: 3rem;
+  margin-top: 6rem;
+  color:black;
+  background:white; /* default background for browsers without gradient support */
+  border-style: solid;
+  border-width: 6px;
+  border-color: #FF8D00;
+  /* css3 */
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+  
+}
+
+#talkbubbleright:before {
+  content:"";
+  position:absolute;
+  top:-30px; /* value = - border-top-width - border-bottom-width */
+  left:210px; /* controls horizontal position */
+  border-width:0px 0px 30px 30px; /* vary these values to change the angle of the vertex */
+  border-style:solid;
+  border-color: #FF8D00 transparent;
+  /* reduce the damage in FF3.0 */
+  display:block;
+  width:0;
+}
+
+
+
 .jqx-widget-header:first-child
 {
 	background-color: #ECC900;

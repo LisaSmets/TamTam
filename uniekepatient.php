@@ -19,6 +19,12 @@ session_start();
 
 		while($patientinfo = $res->fetch_assoc())
 		{
+			$patient->voornaam=$patientinfo['voornaam'];
+			$patient->achternaam=$patientinfo['achternaam'];
+			$patient->straat=$patientinfo['straat'];
+			$patient->nr=$patientinfo['nr'];
+			$patient->woonplaats=$patientinfo['woonplaats'];
+
 			$voornaam = $patientinfo['voornaam'];
 			$achternaam = $patientinfo['achternaam'];
 			$straat = $patientinfo['straat'];
@@ -126,7 +132,8 @@ session_start();
         $("#btn_postbericht").click(function(){
         	$("#nieuwbericht").hide('slow');
         	$("#berichten").show('slow');
-        	$("#joubericht").show('slow');
+        	
+        
         });
 
         //AJAX-CALL
@@ -165,9 +172,9 @@ session_start();
 	
 		    		<img  src="images/dummy.png" id='dummy' alt="dummypic">
 		    		
-			        <p class="info" id='infonaam'><?php echo $voornaam." ".$achternaam ; ?></p>
-			        <p class="info" id='infostraatnr'><?php echo $straat." ".$nr ; ?></p>
-			        <p class="info" id='infowoonplaats'><?php echo $woonplaats ; ?></p>
+			        <p class="info" id='infonaam'><?php echo $patient->voornaam." ".$patient->achternaam ; ?></p>
+			        <p class="info" id='infostraatnr'><?php echo $patient->straat." ".$patient->nr ; ?></p>
+			        <p class="info" id='infowoonplaats'><?php echo $patient->woonplaats ; ?></p>
 			        <a id='edit' href="#">edit</a>
 		    	</div>
 
@@ -176,13 +183,13 @@ session_start();
 		    			<?php 	
 		    				echo "<form action='' method='post'>";
 		    				echo "<label for='patientvn'>Naam </label>";
-		    				echo "<input type='hidden' id='update0' class='inputvak' name='patientvn' value='".$pid."'/>";
-		    				echo "<input type='text' id='update1' class='inputvak' name='patientvn' value='".$voornaam."'/>";
-		    				echo "<input type='text' id='update2' class='inputvak'name='patientan' value='".$achternaam."'/>";
+		    				echo "<input type='hidden' id='update0' class='inputvak' name='patientvn' value='".$patient->id."'/>";
+		    				echo "<input type='text' id='update1' class='inputvak' name='patientvn' value='".$patient->voornaam."'/>";
+		    				echo "<input type='text' id='update2' class='inputvak'name='patientan' value='".$patient->achternaam."'/>";
 		    				echo "<label for='patientstraat'>Adres </label>";
-		    				echo "<input type='text' id='update3' class='inputvak' name='patientstraat' value='".$straat."'/>";
-		    				echo "<input type='text' id='update4' class='inputvak' name='patientnr' value='".$nr."'/>";
-		    				echo "<input type='text' id='update5' class='inputvak' name='patientwoonplaats' value='".$woonplaats."'/>";
+		    				echo "<input type='text' id='update3' class='inputvak' name='patientstraat' value='".$patient->straat."'/>";
+		    				echo "<input type='text' id='update4' class='inputvak' name='patientnr' value='".$patient->nr."'/>";
+		    				echo "<input type='text' id='update5' class='inputvak' name='patientwoonplaats' value='".$patient->woonplaats."'/>";
 		    				echo "<input type='submit' name='btn_edit' id='slaop' value='Sla wijzigingen op'/>";
 		    			 ?>
 		    			 <a id='btn_terug1' href="#">Terug</a>
@@ -201,14 +208,10 @@ session_start();
 		        <div id='berichten'>
 		        	<a id='btn_nieuwbericht' href="#">nieuw</a>
 		        	<a id='btn_label' href="#">label</a>
+					
+					<div id='talkbubbleleft'>Hi, I'm lisa!</div>
+					<div id='talkbubbleright'>Hi, I'm lisa!</div>
 
-		        	 <p class="info" style='padding-top: 5rem;'>Patricia Damen - Verpleegster</p>
-
-		        	 <img id='tekstballon' src="images/tekstballon.png" alt="tekstballon">
-		        	 <div id='joubericht'>
-		        	 	<p class="info" style='padding-top: 17rem; text-allign:right;'>Jou naam hier - functie</p>
-					 	<img id='tekstballon' src="images/joubericht.png" alt="jouwbericht">
-		        	 </div>
 		        </div>
 
 		        <div id='nieuwbericht'>
