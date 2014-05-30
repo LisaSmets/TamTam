@@ -1,0 +1,43 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.6
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: May 30, 2014 at 10:48 AM
+-- Server version: 5.5.33
+-- PHP Version: 5.5.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `tamtam`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patienten`
+--
+
+CREATE TABLE `patienten` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `voornaam` varchar(255) DEFAULT '',
+  `achternaam` varchar(255) DEFAULT NULL,
+  `straat` varchar(255) DEFAULT NULL,
+  `nr` int(20) DEFAULT NULL,
+  `woonplaats` varchar(255) DEFAULT NULL,
+  `emailgebruiker` varchar(225) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+
+--
+-- Dumping data for table `patienten`
+--
+
+INSERT INTO `patienten` (`id`, `voornaam`, `achternaam`, `straat`, `nr`, `woonplaats`, `emailgebruiker`) VALUES
+(4, 'Lisa', 'Aarts', 'Asselbergen', 112, 'Mechelen', 'lisa@gmail.com'),
+(25, 'Lisa', 'Smets', 'Schoolstraat', 1, 'Mechelen', 'info@lissasleeckx.be'),
+(26, 'Laura', 'De Winter', 'Lapelstraat', 50, 'Boortmeerbeek', 'lisa_smets@hotmail.com'),
+(27, 'Laura', 'De Winter', 'Langestraat', 23, 'Boortmeerbeek', 'lisa@gmail.com'),
+(28, 'Hanne', 'Verstraeten', 'Kapelstraat', 12, 'Mechelen', 'lisa@gmail.com');
