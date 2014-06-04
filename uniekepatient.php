@@ -57,6 +57,8 @@ session_start();
 
 		if(!empty($_POST['btn_postbericht']))
 		{
+			$user = new user();
+			$boodschap = new boodschap();
 			$res = $patient->getone();
 			print_r($res);
 
@@ -74,8 +76,8 @@ session_start();
 				$boodschap->userachternaam = $userinfo['achternaam'];
 				$boodschap->userfunctie = $userinfo['functie'];
 			}
-
 			$boodschap->boodschap = $_POST['newboodschap'];
+			$boodschap->Save();
 			
 		}
 
