@@ -127,7 +127,13 @@
 
 			return $available;
 
+		}
 
+		public function getuserinfo()
+		{
+			$db = new db();
+			$sql = "SELECT * FROM login WHERE email = '".$this->m_sEmail."';";
+			return $db->conn->query($sql);
 		}
 
 	}

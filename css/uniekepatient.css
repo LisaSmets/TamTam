@@ -109,7 +109,7 @@ label
 {
 	background-color: #FF8D00;
 	display:block;
-	width:264px;
+	width:272px;
 	height: 40px;
 	color:white;
 	font-family: 'arial narrow';
@@ -172,7 +172,7 @@ label
 	text-align: center;
 }
 
-#btn_postbericht:link,
+/*#btn_postbericht:link,
 #btn_postbericht:visited,
 #btn_postbericht:hover,
 #btn_postbericht:active
@@ -181,7 +181,7 @@ label
 	display:block;
 	width:85%;
 	height: 35px;
-/*	text-indent: -9999px;*/
+	text-indent: -9999px;
 	margin-bottom: 2rem;
 	margin-top: 2rem;
 	padding-top: 0.5rem;
@@ -191,7 +191,7 @@ label
 	font-size: 2rem;
 	text-align: center;
 }
-
+*/
 #btn_terug1:link,
 #btn_terug1:visited,
 #btn_terug1:hover,

@@ -14,7 +14,9 @@
 			$p->straat = $_POST['straat'];
 			$p->nr = $_POST['nr'];
 			$p->woonplaats = $_POST['woonplaats'];
+			$p->rijksregisternr = $_POST['rijksregisternr'];
 			$p->emailgebruiker = $_SESSION['email'];
+			
 			$res = $p->Save();
 
 
@@ -56,7 +58,7 @@
 		
 		<a href="mijnpatienten.php" id="terug">Terug</a>
 
-		<h1 class='title'>Patiënten toevoegen</h1>
+		<h1 class='title'>Patiënten toevoege</h1>
 
 		<a href="logout.php" id="logout">Log out</a>
 
@@ -68,6 +70,7 @@
 				<input type="text" class="tekstvak" name="straat" placeholder="Straat" required >
 				<input type="text" class="tekstvak" name="nr" placeholder="Nummer" required >
 				<input type="text" class="tekstvak" name="woonplaats" placeholder="Woonplaats" required>
+				<input type="text" class="tekstvak" name="rijksregisternr" placeholder="Rijksregisternummer" required>
 				<input type="submit" value="Toevoegen aan lijst" class="button">
 		</form>
 

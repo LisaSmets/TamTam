@@ -11,6 +11,7 @@
 		private $m_iNr;
 		private $m_sWoonplaats;  // ABSTRACTIE & INKAPSELING
 		private $m_sEmailgebruiker;
+		private $m_sRijksregisternr;
 
 		//om te controleren wat er in wordt gestoken getters en setters
 
@@ -44,6 +45,10 @@
 
 				case 'emailgebruiker':
 					$this->m_sEmailgebruiker = $p_vValue;
+					break;
+
+				case 'rijksregisternr':
+					$this->m_sRijksregisternr = $p_vValue;
 					break;
 				/*
 				default: // handig om fouten op te sporen wanneer je je vergist qua syntax
@@ -84,6 +89,10 @@
 				case 'emailgebruiker':
 					return $this->m_sEmailgebruiker;
 					break;
+
+				case 'rijksregisternr':
+					return $this->m_sRijksregisternr;
+					break;
 				
 				default:
 					echo "Getting property " .$p_sProperty. " does not exist.";
@@ -97,14 +106,15 @@
 			// save user to database
 			$db = new db();
 
-			$sql= "INSERT INTO patienten(`voornaam`, `achternaam`, `straat`, `nr`, `woonplaats`, `emailgebruiker`) 
+			$sql= "INSERT INTO patienten(`voornaam`, `achternaam`, `straat`, `nr`, `woonplaats`, `emailgebruiker`, `rijksregisternr`) 
 					VALUES (
 						'".$db->conn->real_escape_string($this->m_sVoornaam)."',
 						'".$db->conn->real_escape_string($this->m_sAchternaam)."',
 						'".$db->conn->real_escape_string($this->m_sStraat)."',
 						'".$db->conn->real_escape_string($this->m_iNr)."',
 						'".$db->conn->real_escape_string($this->m_sWoonplaats)."',
-						'".$db->conn->real_escape_string($this->m_sEmailgebruiker)."'
+						'".$db->conn->real_escape_string($this->m_sEmailgebruiker)."',
+						'".$db->conn->real_escape_string($this->m_sRijksregisternr)."'
 						)";
 			
 			
@@ -135,6 +145,7 @@
 						straat = '".$db->conn->real_escape_string($this->straat)."',
 						nr = '".$db->conn->real_escape_string($this->nr)."',
 						woonplaats = '".$db->conn->real_escape_string($this->woonplaats)."'
+						rijksregisternr = '".$db->conn->real_escape_string($this->rijksregisternr)."'
 						WHERE id = '".$this->id."'";	
 			//print_r($sql);
 			return $db->conn->query($sql);

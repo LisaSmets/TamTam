@@ -7,6 +7,8 @@ session_start();
 	if(isset($_SESSION['email']))
 	{
 		include_once("classes/patient.class.php");
+		include_once("classes/boodschap.class.php");
+		include_once("classes/user.class.php");
 
 		$pid = $_GET['id'];
 
@@ -24,12 +26,14 @@ session_start();
 			$patient->straat=$patientinfo['straat'];
 			$patient->nr=$patientinfo['nr'];
 			$patient->woonplaats=$patientinfo['woonplaats'];
+			$patient->rijksregisternr=$patientinfo['rijksregisternr'];
 
 			$voornaam = $patientinfo['voornaam'];
 			$achternaam = $patientinfo['achternaam'];
 			$straat = $patientinfo['straat'];
 			$nr = $patientinfo['nr'];
-			$woonplaats = $patientinfo['woonplaats'];		
+			$woonplaats = $patientinfo['woonplaats'];	
+
 		}
 
 		// echo $voornaam;
@@ -47,7 +51,32 @@ session_start();
 			$patient->straat = $_POST['patientstraat'];
 			$patient->nr = $_POST['patientnr'];
 			$patient->woonplaats = $_POST['patientwoonplaats'];
+			$patient->rijksregisternr = $_POST['patientrijksregnr'];
 			$infoupdate = $patient->Update();
+		}
+
+		if(!empty($_POST['btn_postbericht']))
+		{
+			$res = $patient->getone();
+			print_r($res);
+
+			while($patientinfo = $res->fetch_assoc())
+			{
+				echo $patientinfo['rijksregisternr'];
+				$boodschap->rijksregisternr = $patientinfo['rijksregisternr'];
+			}
+
+			$resuser = $user->getuserinfo();
+
+			while($userinfo = $resuser->fetch_assoc())
+			{
+				$boodschap->uservoornaam = $userinfo['voornaam'];
+				$boodschap->userachternaam = $userinfo['achternaam'];
+				$boodschap->userfunctie = $userinfo['functie'];
+			}
+
+			$boodschap->boodschap = $_POST['newboodschap'];
+			
 		}
 
 	}
@@ -144,12 +173,14 @@ session_start();
         	var updatestraat = $("#update3").val();
         	var updatenr = $("#update4").val();
         	var updatewp = $("#update5").val();
+        	var updaterijksregnr = $("#update6").val();
 
         	console.log(updatevn + updatean + updatestraat + updatenr + updatewp);
         	
         	$("#infonaam").text(updatevn+" "+updatean);
         	$("#infostraatnr").text(updatestraat+" "+updatenr);
         	$("#infowoonplaats").text(updatewp);
+        	 $("#inforijksregisternr").text(updaterijksregnr);
         });
 
 
@@ -158,13 +189,13 @@ session_start();
 
  	<div id="container">
  		<a href="mijnpatienten.php" id="pijlterug">terug</a>
-		<h1 class='title'><?php echo $voornaam ." ".$achternaam ?></h1>
+		<h1 class='title'><?php echo $patient->voornaam ." ".$patient->achternaam ?></h1>
 		<a href="logout.php" id="logout">Log out</a>
 
 		<div id='jqxnavigationbar'>
 		    <!--Header-->
 		    <div>
-		        Patiënt
+		        Patiën
 		    </div>
 		    <!--Content-->
 		    <div>
@@ -175,6 +206,7 @@ session_start();
 			        <p class="info" id='infonaam'><?php echo $patient->voornaam." ".$patient->achternaam ; ?></p>
 			        <p class="info" id='infostraatnr'><?php echo $patient->straat." ".$patient->nr ; ?></p>
 			        <p class="info" id='infowoonplaats'><?php echo $patient->woonplaats ; ?></p>
+			      	<p class="info" id='inforijksregisternr'><?php echo $patient->rijksregisternr ; ?></p>
 			        <a id='edit' href="#">edit</a>
 		    	</div>
 
@@ -190,6 +222,7 @@ session_start();
 		    				echo "<input type='text' id='update3' class='inputvak' name='patientstraat' value='".$patient->straat."'/>";
 		    				echo "<input type='text' id='update4' class='inputvak' name='patientnr' value='".$patient->nr."'/>";
 		    				echo "<input type='text' id='update5' class='inputvak' name='patientwoonplaats' value='".$patient->woonplaats."'/>";
+		    				echo "<input type='text' id='update6' class='inputvak' name='patientrijksregnr' value='".$patient->rijksregisternr."'/>";
 		    				echo "<input type='submit' name='btn_edit' id='slaop' value='Sla wijzigingen op'/>";
 		    			 ?>
 		    			 <a id='btn_terug1' href="#">Terug</a>
@@ -215,10 +248,10 @@ session_start();
 		        </div>
 
 		        <div id='nieuwbericht'>
-		        	<form action="" method=''>
-		        		<textarea class='inputvak' id='oranje' placeholder='Schrijf hier uw nieuw bericht...'></textarea>
-		        		<a id='btn_postbericht' href="#">Bericht plaatsen</a>
-						<!-- <input type="submit" name='btn_postbericht' id='btn_postbericht' value='Bericht plaatsen'> -->
+		        	<form action="" method='POST'>
+		        		<textarea class='inputvak' id='oranje' name='newboodschap' placeholder='Schrijf hier uw nieuw bericht...'></textarea>
+			        	<!-- 	<a id='btn_postbericht' href="#">Bericht plaatsen</a> -->
+						<input type="submit" name='btn_postbericht' id='btn_postbericht' value='Bericht plaatsen'>
 		        	</form>
 		        	<a id='btn_terug2' href="#">Terug</a>
 
