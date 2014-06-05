@@ -10,6 +10,7 @@
 		private $m_sUserachternaam;
 		private $m_sUserfunctie;
 		private $m_sBoodschap;
+		private $m_sDatum;
 
 		public function __set ($p_sProperty, $p_vValue)
 		{
@@ -36,6 +37,10 @@
 
 				case 'boodschap':
 					$this->m_sBoodschap = $p_vValue;
+					break;
+
+				case 'datum':
+					$this->m_sDatum = $p_vValue;
 					break;
 			}
 		}
@@ -68,6 +73,10 @@
 				case 'boodschap':
 					return $this->m_sBoodschap;
 					break;
+
+				case 'datum':
+					return $this->m_sDatum;
+					break;
 				
 				default:
 					echo "Getting property " .$p_sProperty. " does not exist.";
@@ -81,22 +90,30 @@
 			// save user to database
 			$db = new db();
 
-			$sql= "INSERT INTO `boodschap`(`rijksregisternr`, `uservoornaam`, `userachternaam`, `userfunctie`, `boodschap`) VALUES  (
+			$sql= "INSERT INTO `boodschap`(`rijksregisternr`, `uservoornaam`, `userachternaam`, `userfunctie`, `boodschap`, `datum`) VALUES  (
 						'".$db->conn->real_escape_string($this->m_sRijksregisternr)."',
 						'".$db->conn->real_escape_string($this->m_sUservoornaam)."',
 						'".$db->conn->real_escape_string($this->m_sUserachternaam)."',
 						'".$db->conn->real_escape_string($this->m_sUserfunctie)."',
-						'".$db->conn->real_escape_string($this->m_sBoodschap)."'
+						'".$db->conn->real_escape_string($this->m_sBoodschap)."',
+						'".$db->conn->real_escape_string($this->m_sDatum)."'
 						)";
 			
-			
-			return $db->conn->query($sql);
+	
+			$db->conn->query($sql);
 
 			//echo ($sql);
 
 			//real escape string moet altijd op de connectie gedaan worden
 		}
 		
+		public function Getmessages()
+		{
+			$db = new db();
+			$sql = "SELECT * FROM `boodschap` WHERE `rijksregisternr` = '".$this->rijksregisternr."'";
+			//echo $sql;
+			return $db->conn->query($sql);
+		}
 	}
 
 

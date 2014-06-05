@@ -147,7 +147,7 @@ label
 	height: 40px;
 	text-indent: -9999px;
 	background-repeat: no-repeat;
-	margin-bottom: 2rem;
+	margin-bottom: 4rem;
 	margin-top: 2rem;
 	margin-left:16rem;
 }
@@ -246,11 +246,12 @@ label
 	padding-right: 5rem;
 }
 
-#talkbubbleleft {
+.talkbubbleleft {
   position:relative;
   padding:15px;
   margin-right: 3rem;
-  margin-top: 6rem;
+  margin-bottom: 4rem;
+  margin-top: 3rem;
   color:black;
   background:white; /* default background for browsers without gradient support */
   border-style: solid;
@@ -263,7 +264,7 @@ label
   
 }
 
-#talkbubbleleft:before {
+.talkbubbleleft:before {
   content:"";
   position:absolute;
   top:-30px; /* value = - border-top-width - border-bottom-width */
@@ -276,11 +277,12 @@ label
   width:0;
 }
 
-#talkbubbleright {
+.talkbubbleright {
   position:relative;
   padding:15px;
   margin-right: 3rem;
-  margin-top: 6rem;
+  margin-bottom: 4rem;
+  margin-top: 3rem;
   color:black;
   background:white; /* default background for browsers without gradient support */
   border-style: solid;
@@ -293,7 +295,7 @@ label
   
 }
 
-#talkbubbleright:before {
+.talkbubbleright:before {
   content:"";
   position:absolute;
   top:-30px; /* value = - border-top-width - border-bottom-width */

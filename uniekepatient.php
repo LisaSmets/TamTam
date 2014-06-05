@@ -57,19 +57,20 @@ session_start();
 
 		if(!empty($_POST['btn_postbericht']))
 		{
-			$user = new user();
+			
 			$boodschap = new boodschap();
+
 			$res = $patient->getone();
-			print_r($res);
 
 			while($patientinfo = $res->fetch_assoc())
 			{
-				echo $patientinfo['rijksregisternr'];
 				$boodschap->rijksregisternr = $patientinfo['rijksregisternr'];
 			}
 
+			$user = new user();
+			$user->email = $_SESSION['email'];
 			$resuser = $user->getuserinfo();
-
+			
 			while($userinfo = $resuser->fetch_assoc())
 			{
 				$boodschap->uservoornaam = $userinfo['voornaam'];
@@ -77,9 +78,13 @@ session_start();
 				$boodschap->userfunctie = $userinfo['functie'];
 			}
 			$boodschap->boodschap = $_POST['newboodschap'];
+			$boodschap->datum = date("j M. Y");
 			$boodschap->Save();
-			
 		}
+
+		
+
+
 
 	}
 	else
@@ -148,7 +153,6 @@ session_start();
         });
 
 
-
         $("#btn_terug2").click(function(){
         	$("#nieuwbericht").hide('slow');
         	$("#berichten").show('slow');
@@ -163,11 +167,13 @@ session_start();
         $("#btn_postbericht").click(function(){
         	$("#nieuwbericht").hide('slow');
         	$("#berichten").show('slow');
-        	
-        
         });
+	   	$( ".boodschap:odd" ).addClass("talkbubbleleft");
+        $( ".boodschap:even").addClass("talkbubbleright");
+        $( ".pboodschap:even").css('text-align','right');
+        $( ".pboodschap:even").css('padding-right','3rem');
+        
 
-        //AJAX-CALL
         $("#btn_edit").click(function(){
         	var updateid = $("updateO").val();
         	var updatevn = $("#update1").val();
@@ -182,7 +188,7 @@ session_start();
         	$("#infonaam").text(updatevn+" "+updatean);
         	$("#infostraatnr").text(updatestraat+" "+updatenr);
         	$("#infowoonplaats").text(updatewp);
-        	 $("#inforijksregisternr").text(updaterijksregnr);
+        	$("#inforijksregisternr").text(updaterijksregnr);
         });
 
 
@@ -224,6 +230,7 @@ session_start();
 		    				echo "<input type='text' id='update3' class='inputvak' name='patientstraat' value='".$patient->straat."'/>";
 		    				echo "<input type='text' id='update4' class='inputvak' name='patientnr' value='".$patient->nr."'/>";
 		    				echo "<input type='text' id='update5' class='inputvak' name='patientwoonplaats' value='".$patient->woonplaats."'/>";
+		    				echo "<label for='patientrijksregnr'>Rijksregisternummer</label>";
 		    				echo "<input type='text' id='update6' class='inputvak' name='patientrijksregnr' value='".$patient->rijksregisternr."'/>";
 		    				echo "<input type='submit' name='btn_edit' id='slaop' value='Sla wijzigingen op'/>";
 		    			 ?>
@@ -244,8 +251,37 @@ session_start();
 		        	<a id='btn_nieuwbericht' href="#">nieuw</a>
 		        	<a id='btn_label' href="#">label</a>
 					
-					<div id='talkbubbleleft'>Hi, I'm lisa!</div>
-					<div id='talkbubbleright'>Hi, I'm lisa!</div>
+					<div id='lijstboodschap'>
+						<?php 
+							$boodschap = new boodschap();
+							$patient = new patient();
+							$patient->id = $_GET['id'];
+
+							$resp = $patient->getone();
+							//print_r($resp);
+
+							while($p = $resp->fetch_assoc())
+							{
+								$boodschap->rijksregisternr = $p['rijksregisternr'];
+							}
+
+							$resb = $boodschap->Getmessages();
+							//print_r($resb);
+							while($b = $resb->fetch_assoc())
+							{
+								echo "<p class='pboodschap'>";
+								echo $b['uservoornaam']." ".$b['userachternaam']." - ".$b['userfunctie'];
+								echo "<br/>";
+								echo $b['datum'];
+								echo "</p>";
+								echo "<div class='boodschap'>";
+								echo $b['boodschap'];
+								echo "</div>";
+							}
+
+						?>
+					</div>
+					
 
 		        </div>
 
