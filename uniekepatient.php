@@ -474,35 +474,33 @@ session_start();
 		
 			    $result = $patient->Getonemail();
 
-			    print_r($result);
+			    //print_r($result);
 
 			    $array = array();
-				
-				$users = $result->fetchAll(PDO::FETCH_ASSOC);
 
-				foreach($users as $u) echo $u["username"];
-
-				while($e = mysql_fetch_assoc($result))
+				while($e = $result->fetch_assoc())
 				{
-					$array[] = $e;
-					//$array[$e]['emailgebruiker'] = $e['emailgebruiker'];
+					$array[] = $e['emailgebruiker'];
 				}
-		
-				print_r($array);
+				
+				//print_r($array);
 
+				foreach ($array as $a) 
+				{
+					$user->email = $a;
+				    $resusersinfo = $user->getuserinfo();
+				    //print_r($resusersinfo);
 
-				// while($singleMessage = $result->fetch_assoc())
-				// {
-				//   $messages[$singleMessage]['title'] = $singleMessage['title'];
-				//   $messages[$singleMessage]['body'] = $singleMessage['body'];
-				// }
-
-				$user->getuserinfo();
+				    while($u = $resusersinfo->fetch_assoc())
+				    {
+				    	echo "<p class='info' style='padding-top:3rem;'>";
+				    	echo $u['voornaam']." ".$u['achternaam']." - ".$u['functie'];
+				    	echo "</p>";
+				    }
+				}
 
 		    	 ?>
-		         <p class="info" style='padding-top:3rem;'>Patricia Damen - Verpleegster</p>
-				<p class="info" style='padding-top:3rem;'>Eddy Peters - Poetshulp</p>
-				<p class="info" style='padding-top:3rem;'>Mieke Segers - Kinesiste</p>
+		     
 		    </div>
 
 		</div>

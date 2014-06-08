@@ -171,13 +171,18 @@ body
 	font-size: 2rem;
 	padding-top: 1rem;
 	padding-left: 4rem;
+	text-align: left;
+	list-style-type: none;
 }
 
-.lipatient a
+.lipatient a:link,
+.lipatient a:visited,
+.lipatient a:hover,
+.lipatient a:active
 {
 	text-decoration: none;
 	color: black;
-
+	
 }
 
 .letteraz
@@ -188,6 +193,7 @@ body
 	background-color: #0C8C71;
 	margin-top: 2rem;
 	padding-left: 4rem;
+	text-align: left;
 }
 
 
