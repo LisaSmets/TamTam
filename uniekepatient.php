@@ -9,10 +9,13 @@ session_start();
 		include_once("classes/patient.class.php");
 		include_once("classes/boodschap.class.php");
 		include_once("classes/user.class.php");
+		include_once("classes/medischeinfo.class.php");
 
 		$pid = $_GET['id'];
 
 		$patient=new patient();
+		$medischeinfo = new medischeinfo();
+
 		$patient->emailgebruiker = $_SESSION['email'];
 		$patient->id = $pid;
 		//echo ($patient->id);
@@ -32,8 +35,51 @@ session_start();
 			$achternaam = $patientinfo['achternaam'];
 			$straat = $patientinfo['straat'];
 			$nr = $patientinfo['nr'];
-			$woonplaats = $patientinfo['woonplaats'];	
+			$woonplaats = $patientinfo['woonplaats'];
+			
+			//---- MEDISCHE INFO ---------------------
 
+			$medischeinfo->rijksregisternr=$patientinfo['rijksregisternr'];
+
+			$lijstmedinfo = $medischeinfo->Getall();
+
+			if($lijstmedinfo->num_rows == 0)
+			{
+				$medischeinfo->Save();
+			}
+			//patient mag maar 1x medische info hebben, dus checken of deze al bestaat en anders aanmaken
+
+			while($l = $lijstmedinfo->fetch_assoc())
+			{
+				$medischeinfo->info1 = $l['info1'];
+				$medischeinfo->info2 = $l['info2'];
+				$medischeinfo->info3 = $l['info3'];
+				$medischeinfo->info4 = $l['info4'];
+				$medischeinfo->info5 = $l['info5'];
+				$medischeinfo->info6 = $l['info6'];
+				$medischeinfo->info7 = $l['info7'];
+				$medischeinfo->info8 = $l['info8'];
+				$medischeinfo->info9 = $l['info9'];
+				$medischeinfo->info10 = $l['info10'];
+			}
+
+			if(!empty($_POST['btn_edit2']))
+			{
+				$medischeinfo->info1 = $_POST['info1'];
+				$medischeinfo->info2 = $_POST['info2'];
+				$medischeinfo->info3 = $_POST['info3'];
+				$medischeinfo->info4 = $_POST['info4'];
+				$medischeinfo->info5 = $_POST['info5'];
+				$medischeinfo->info6 = $_POST['info6'];
+				$medischeinfo->info7 = $_POST['info7'];
+				$medischeinfo->info8 = $_POST['info8'];
+				$medischeinfo->info9 = $_POST['info9'];
+				$medischeinfo->info10 = $_POST['info10'];
+				$medischeinfo->Update();
+			}
+
+			// ------- ZORGVERLENERS ------------------
+			
 		}
 
 		// echo $voornaam;
@@ -81,9 +127,6 @@ session_start();
 			$boodschap->datum = date("j M. Y");
 			$boodschap->Save();
 		}
-
-		
-
 
 
 	}
@@ -183,13 +226,29 @@ session_start();
         	var updatewp = $("#update5").val();
         	var updaterijksregnr = $("#update6").val();
 
-        	console.log(updatevn + updatean + updatestraat + updatenr + updatewp);
+        	//console.log(updatevn + updatean + updatestraat + updatenr + updatewp);
         	
         	$("#infonaam").text(updatevn+" "+updatean);
         	$("#infostraatnr").text(updatestraat+" "+updatenr);
         	$("#infowoonplaats").text(updatewp);
         	$("#inforijksregisternr").text(updaterijksregnr);
         });
+
+
+ 		//------ MEDISCHE INFO --------------
+ 		$("#bewerkmedischeinfo").hide();
+
+        $("#editgroen").click(function(){
+        	$("#toonmedischeinfo").hide('slow');
+        	$("#bewerkmedischeinfo").show('slow');
+        });
+
+         $("#btn_terug3").click(function(){
+        	$("#bewerkmedischeinfo").hide('slow');
+        	$("#toonmedischeinfo").show('slow');
+        	
+        });
+
 
 
     });
@@ -203,7 +262,7 @@ session_start();
 		<div id='jqxnavigationbar'>
 		    <!--Header-->
 		    <div>
-		        Patiën
+		        Patiënt
 		    </div>
 		    <!--Content-->
 		    <div>
@@ -297,7 +356,7 @@ session_start();
 
 		        <div id='berichtlabel'>
 		        	
-
+					
 		        </div>
 
 		    </div>
@@ -306,17 +365,141 @@ session_start();
 		       Medische info
 		    </div>
 		    <!--Content-->
-		    <div>
-		        <p class="info" style='padding-top:3rem;'>Patiënt is diabetisch</p>
-				<p class="info" style='padding-top:3rem;'>Patiënt heeft sinds augustus 2013 een kusntheup.</p>
-		   		<a id='editgroen' href="#">edit</a>
-		    </div>
+			<div>
+			    <div id='toonmedischeinfo'>
+			    	<?php 
+			    		if ($medischeinfo->info1 !== '')
+			    		{
+			    		?>
+			    			<p class="info" style='padding-top:3rem;'><?php echo $medischeinfo->info1; ?></p>
+			    		<?php
+			    		}
+			    		if ($medischeinfo->info2 !== '')
+			    		{
+			    	 	?>
+							<p class="info" style='padding-top:3rem;'><?php echo $medischeinfo->info2; ?></p>
+						<?php
+			    		}
+			    		if ($medischeinfo->info3 !== '')
+			    		{
+			    	 	?>
+							<p class="info" style='padding-top:3rem;'><?php echo $medischeinfo->info3 ;?></p>
+						<?php
+			    		}
+			    		if ($medischeinfo->info4 !== '')
+			    		{
+			    	 	?>
+							<p class="info" style='padding-top:3rem;'><?php echo $medischeinfo->info4 ;?></p>
+						<?php
+			    		}
+			    		if ($medischeinfo->info5 !== '')
+			    		{
+			    	 	?>
+							<p class="info" style='padding-top:3rem;'><?php echo $medischeinfo->info5 ;?></p>
+						<?php
+			    		}
+			    		if ($medischeinfo->info6 !== '')
+			    		{
+			    	 	?>
+							<p class="info" style='padding-top:3rem;'><?php echo $medischeinfo->info6 ;?></p>
+						<?php
+			    		}
+			    		if ($medischeinfo->info7 !== '')
+			    		{
+			    	 	?>
+							<p class="info" style='padding-top:3rem;'><?php echo $medischeinfo->info7 ;?></p>
+						<?php
+			    		}
+			    		if ($medischeinfo->info8 !== '')
+			    		{
+			    	 	?>
+							<p class="info" style='padding-top:3rem;'><?php echo $medischeinfo->info8 ;?></p>
+						<?php
+			    		}
+			    		if ($medischeinfo->info9 !== '')
+			    		{
+			    	 	?>
+							<p class="info" style='padding-top:3rem;'><?php echo $medischeinfo->info9 ;?></p>
+						<?php
+			    		}
+			    		if ($medischeinfo->info10 !== '')
+			    		{
+			    	 	?>
+							<p class="info" style='padding-top:3rem;'><?php echo $medischeinfo->info10; ?></p>
+			   			<?php
+			    		}
+			    	 	?>
+			   		<a id='editgroen' href="#">edit</a>
+				</div>
+
+			   	<div id='bewerkmedischeinfo'>
+
+			   		<?php 	
+		    				echo "<form action='' method='post'>";
+		    				echo "<textarea type='textarea' id='info1' class='inputvakgroen' name='info1' placeholder='Hier medische info'>$medischeinfo->info1</textarea>";
+		    				echo "<textarea type='text' id='info2' class='inputvakgroen' name='info2' placeholder='Hier medische info'>$medischeinfo->info2</textarea>";
+		    				echo "<textarea type='text' id='info3' class='inputvakgroen' name='info3' placeholder='Hier medische info'>$medischeinfo->info3</textarea>";
+		    				echo "<textarea type='text' id='info4' class='inputvakgroen' name='info4' placeholder='Hier medische info'>$medischeinfo->info4</textarea>";
+		    				echo "<textarea type='text' id='info5' class='inputvakgroen' name='info5' placeholder='Hier medische info'>$medischeinfo->info5</textarea>";
+		    				echo "<textarea type='text' id='info6' class='inputvakgroen' name='info6' placeholder='Hier medische info'>$medischeinfo->info6</textarea>";
+		    				echo "<textarea type='text' id='info7' class='inputvakgroen' name='info7' placeholder='Hier medische info'>$medischeinfo->info7</textarea>";
+		    				echo "<textarea type='text' id='info8' class='inputvakgroen' name='info8' placeholder='Hier medische info'>$medischeinfo->info8</textarea>";
+		    				echo "<textarea type='text' id='info9' class='inputvakgroen' name='info9' placeholder='Hier medische info' >$medischeinfo->info9</textarea>";
+		    				echo "<textarea type='text' id='info10' class='inputvakgroen' name='info10' placeholder='Hier medische info' >$medischeinfo->info10</textarea>";
+		    				echo "<input type='submit' name='btn_edit2' id='slaopgroen' value='Sla wijzigingen op'/>";
+		    			 ?>
+			   		
+			   		<a id='btn_terug3' href="#">Terug</a>
+			    </div>
+
+			</div>
 		    <!--Header-->
 		     <div id='headerzorgverleners'>
 		       Zorgverleners
 		    </div>
 		    <!--Content-->
 		    <div>
+
+		    	<?php 
+		    	$user = new user ();
+		    	$patient = new patient();
+
+				$patient->id = $_GET['id'];
+		    	$res2 = $patient->getone();
+
+				while($patientinfo2 = $res2->fetch_assoc())
+				{
+					$patient->rijksregisternr=$patientinfo2['rijksregisternr'];
+				}
+		
+			    $result = $patient->Getonemail();
+
+			    print_r($result);
+
+			    $array = array();
+				
+				$users = $result->fetchAll(PDO::FETCH_ASSOC);
+
+				foreach($users as $u) echo $u["username"];
+
+				while($e = mysql_fetch_assoc($result))
+				{
+					$array[] = $e;
+					//$array[$e]['emailgebruiker'] = $e['emailgebruiker'];
+				}
+		
+				print_r($array);
+
+
+				// while($singleMessage = $result->fetch_assoc())
+				// {
+				//   $messages[$singleMessage]['title'] = $singleMessage['title'];
+				//   $messages[$singleMessage]['body'] = $singleMessage['body'];
+				// }
+
+				$user->getuserinfo();
+
+		    	 ?>
 		         <p class="info" style='padding-top:3rem;'>Patricia Damen - Verpleegster</p>
 				<p class="info" style='padding-top:3rem;'>Eddy Peters - Poetshulp</p>
 				<p class="info" style='padding-top:3rem;'>Mieke Segers - Kinesiste</p>

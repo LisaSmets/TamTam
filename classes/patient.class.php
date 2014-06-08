@@ -150,6 +150,14 @@
 			//print_r($sql);
 			return $db->conn->query($sql);
 		}
+
+		public function Getonemail()
+		{
+			$db = new db();
+			$sql = "SELECT * FROM `patienten` WHERE `rijksregisternr` = '".$this->rijksregisternr."'";
+			//echo $sql;
+			return $db->conn->query($sql);
+		}
 		
 		public function Geta()
 		{

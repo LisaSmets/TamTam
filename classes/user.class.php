@@ -134,7 +134,7 @@
 			$db = new db();
 
 			$sql = "SELECT * FROM login WHERE email = '".$this->email."';";
-	
+			//echo $sql;
 			return $db->conn->query($sql);
 			
 		}
